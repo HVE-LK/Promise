@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="common.js"></script><script type="text/javascript" src="HVE.js"></script></body>
+<script type="application/javascript">
+/*    var promise=new HVE_LK.Promise();
+    setTimeout(function () {
+        promise.reject(1111111111);
+    },2000);
+    promise.then(function (value) {
+        console.log("success",value);
+    },function (err) {
+        console.log(err);
+    });*/
+/*    var HVE=HVE_LK.defer;
+    var promise=new HVE.Promise(function (res,rej) {
+        console.log("this",this);
+        setTimeout(function () {
+            /!*throw  new Error("START");*!/
+            rej(11111111111);
+        },2000);
+    }).catch(function (err) {
+        console.log("catch",err);
+        return err;
+    }).
+    then(function (value) {
+        console.log("then1",value);
+        return 1122;
+    },function (error) {
+        console.log("then1",error);
+    }).
+    then(function (value) {
+        console.log("then2",value);
+        return value;
+    },function (error) {
+        console.log(error);
+    }).
+    then(function (value) {
+        console.log("then3",value);
+        return new HVE.Promise(function (res,rej) {
+            setTimeout(function () {
+                res(value+'哈哈');
+            },2000);
+        });
+    },function (err) {
+        console.log("47",err);
+        return err;
+    }).
+    done(function (value) {
+        console.log("done",value);
+    },function (err) {
+        console.log(err);
+    });*/
+   var a=[],b=HVE_LK.defer;
+   function c(i) {
+       var a=new b.Promise();
+       setTimeout(function () {
+            a.resolve(i);
+       },i*1000);
+       return a;
+   }
+   for(var i=0;i<5;i++){
+       a.push(c(i));
+   }
+   b.race(a).then(function (res) {
+       console.log(res);
+       return res
+   },function (err) {
+       console.log(err);
+       return "我错了"+err
+   }).then(function (g) {
+       console.log(g.toString()+"wocao");
+   });
+/*    var a=[];
+    a.prototype.ds=function () {
+      console.log(11111111);
+    };
+    console.log(a);*/
+
+var str=" ni 你在哪里/* ";
+var r=new RegExp(/\/\*\s$/,"g");
+console.log(str.startsWith(/\sni/));
+</script>
+</html>
